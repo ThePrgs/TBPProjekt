@@ -24,16 +24,9 @@ namespace TBPProjekt
         {
             try
             {
-                if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text))
-                {
-                    con.Open();
-                    var query = new NpgsqlCommand("CREATE USER " + textBox1.Text + " WITH PASSWORD '" + textBox2.Text + "';", con);
-                    query.ExecuteNonQuery();
-                }
-                else
-                {
-                    MessageBox.Show("Error");
-                }
+                con.Open();
+                var query = new NpgsqlCommand("CREATE USER " + textBox1.Text + " WITH PASSWORD '" + textBox2.Text + "';", con);
+                query.ExecuteNonQuery();
                 con.Close();
                 this.Hide();
                 Form newForm = new DbForm(con);
