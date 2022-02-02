@@ -74,9 +74,8 @@ namespace TBPProjekt
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             con.Open();
-            NpgsqlCommand query;
            
-            query = new NpgsqlCommand("UPDATE pg_authid SET " + dataGridView1.Columns[e.ColumnIndex].Name + " ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'WHERE oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
+            var query = new NpgsqlCommand("UPDATE pg_authid SET " + dataGridView1.Columns[e.ColumnIndex].Name + " ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'WHERE oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
             query.ExecuteNonQuery();
 
             con.Close();
