@@ -75,46 +75,9 @@ namespace TBPProjekt
         {
             con.Open();
             NpgsqlCommand query;
-
-            switch (e.ColumnIndex)
-            {
-                case 2:
-                    query = new NpgsqlCommand("UPDATE pg_authid SET rolsuper ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'WHERE oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
-                    query.ExecuteNonQuery();
-                    break;
-
-                case 3:
-                    query = new NpgsqlCommand("UPDATE pg_authid SET rolinherit ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'where oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
-                    query.ExecuteNonQuery();
-                    break;
-
-                case 4:
-                    query = new NpgsqlCommand("UPDATE pg_authid SET rolcreaterole ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'where oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
-                    query.ExecuteNonQuery();
-                    break;
-
-                case 5:
-                    query = new NpgsqlCommand("UPDATE pg_authid SET rolcreatedb ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'where oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
-                    query.ExecuteNonQuery();
-                    break;
-
-                case 6:
-                    query = new NpgsqlCommand("UPDATE pg_authid SET rolcanlogin ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'where oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
-                    query.ExecuteNonQuery();
-                    break;
-
-                case 7:
-                    query = new NpgsqlCommand("UPDATE pg_authid SET rolreplication ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'where oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
-                    query.ExecuteNonQuery();
-                    break;
-
-                case 8:
-                    query = new NpgsqlCommand("UPDATE pg_authid SET rolbypassrls ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'where oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
-                    query.ExecuteNonQuery();
-                    break;
-
-            }
-
+           
+            query = new NpgsqlCommand("UPDATE pg_authid SET " + dataGridView1.Columns[e.ColumnIndex].Name + " ='" + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'WHERE oid='" + dataGridView1.Rows[e.RowIndex].Cells["oid"].Value.ToString() + "';", con);
+            query.ExecuteNonQuery();
 
             con.Close();
             DataBind();
